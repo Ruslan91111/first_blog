@@ -4,8 +4,8 @@
 <h1>Посты</h1>
 <ul>
 {% for post in object_list %}
-    <li><a href="{% url 'article' post.pk %}">{{ post.title }}</a> - {{ post.author.first_name }}
-        {{ post.author.last_name }}<br/>
+    <li><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a> - {{ post.author.first_name }}
+        {{ post.author.last_name }} - <small><a href="{% url 'update_post' post.pk %}">(Редактировать)</a><a href="{% url 'delete_post' post.pk %}">(Удалить)</a></small><br/>
         {{ post.body }}</li>
 {% endfor %}
 </ul>
