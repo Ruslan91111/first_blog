@@ -4,9 +4,20 @@
 <h1>Посты</h1>
 <ul>
 {% for post in object_list %}
-    <li><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a> - {{ post.author.first_name }}
-        {{ post.author.last_name }} - <small><a href="{% url 'update_post' post.pk %}">(Редактировать)</a><a href="{% url 'delete_post' post.pk %}">(Удалить)</a></small><br/>
-        {{ post.body }}</li>
+    <li><a href="{% url 'article-detail' post.pk %}">
+        {{ post.title }}</a> -
+        {{ post.author.first_name }}
+        {{ post.author.last_name }} -
+        {{ post.post_date }}<small>
+
+        {% if user.is_authenticated %}
+            <a href="{% url 'update_post' post.pk %}">(Редактировать)</a>
+            <a href="{% url 'delete_post' post.pk %}">(Удалить)</a>
+        {% endif %}
+
+        </small><br/>
+        {{ post.body|slice:"300"|safe }}</li>
+
 {% endfor %}
 </ul>
 {% endblock %}

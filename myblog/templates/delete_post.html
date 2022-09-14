@@ -2,18 +2,21 @@
 {% block title %}Удаление поста{% endblock %}
 {% block content %}
 
-
-<h1>Удалить пост</h1>
-<br/><br/><br/>
-<h3>Удалить: {{ post.title }}</h3>
-<br/>
-<div class="mb-3">
-    <form method="POST">
-        {% csrf_token %}
-        <strong>Are you sure?!</strong><br/>
-        <button class="btn btn-info">Удалить пост!</button>
-    </form>
-</div>
+{% if user.is_authenticated %}
+    <h1>Удалить пост</h1>
+    <br/><br/><br/>
+    <h3>Удалить: {{ post.title }}</h3>
+    <br/>
+    <div class="mb-3">
+        <form method="POST">
+            {% csrf_token %}
+            <strong>Вы уверены?</strong><br/>
+            <button class="btn btn-info">Удалить пост!</button>
+        </form>
+    </div>
+{% else %}
+    Ты не вошел на сайт, чтобы что-то менять.
+{% endif %}
 
 
 {% endblock %}
