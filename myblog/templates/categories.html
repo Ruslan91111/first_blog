@@ -1,12 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Посты</h1>
+{% if category_posts %}
+
+<h1>{{cats}}</h1>
+
 <ul>
-{% for post in object_list %}
+{% for post in category_posts %}
     <li><a href="{% url 'article-detail' post.pk %}">
         {{ post.title }}</a> -
-        <a href="{% url 'category' post.category|slugify %}">{{ post.category }}</a>
+        {{ post.category }}
         {{ post.author.first_name }}
         {{ post.author.last_name }} -
         {{ post.post_date }}<small>
@@ -20,9 +23,7 @@
         {{ post.body|slice:"300"|safe }}</li>
 {% endfor %}
 </ul>
-
-{% for item in cat_menu %}
-{{ item }}<br/>
-{% endfor %}
-
+{% else %}
+    <h2>Извините, такой страницы не существует</h2>
+{% endif %}
 {% endblock %}
