@@ -3,6 +3,7 @@
 {% block content %}
 
 {% if user.is_authenticated %}
+{% if user.id == post.author.id %}
     <h1>Удалить пост</h1>
     <br/><br/><br/>
     <h3>Удалить: {{ post.title }}</h3>
@@ -14,9 +15,13 @@
             <button class="btn btn-info">Удалить пост!</button>
         </form>
     </div>
+{% else
+Тебе запрещено удалять данный пост
+{% endif %}
 {% else %}
     Ты не вошел на сайт, чтобы что-то менять.
 {% endif %}
+
 
 
 {% endblock %}

@@ -3,6 +3,8 @@
 {% block content %}
 
 {% if user.is_authenticated %}
+
+{% if user.id == post.author.id %}
     <h1>Обновить пост</h1>
     <br/><br/><br/>
     <div class="mb-3">
@@ -15,6 +17,8 @@
 {% else %}
     Ты не вошел на сайт, чтобы что-то менять.
 {% endif %}
+{% else %}
 
 
+{% endif %}
 {% endblock %}

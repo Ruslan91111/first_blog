@@ -12,17 +12,16 @@
         {{ post.post_date }}<small>
 
         {% if user.is_authenticated %}
+            {% if user.id == post.author.id %}
+
             <a href="{% url 'update_post' post.pk %}">(Редактировать)</a>
             <a href="{% url 'delete_post' post.pk %}">(Удалить)</a>
+            {% endif %}
         {% endif %}
 
         </small><br/>
         {{ post.body|slice:"300"|safe }}</li>
 {% endfor %}
 </ul>
-
-{% for item in cat_menu %}
-{{ item }}<br/>
-{% endfor %}
 
 {% endblock %}
