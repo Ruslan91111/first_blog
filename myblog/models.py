@@ -21,6 +21,10 @@ class Post(models.Model):
     body = models.TextField(verbose_name='текст')
     post_date = models.DateField(auto_now_add=True, verbose_name='дата публикации')
     category = models.CharField(max_length=255, verbose_name='Категория', default='coding')
+    likes = models.ManyToManyField(User, related_name='blog_posts', verbose_name='Нравится')
+
+    def total_likes(self):
+        return self.likes.count()
 
     def __str__(self):
         return self.title + ' | ' + str(self.author)

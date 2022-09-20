@@ -1,15 +1,30 @@
 {% extends 'base.html' %}
+{% block title %}Создать новый пост.{% endblock %}
 
 {% block content %}
-<h1>Добавить пост</h1>
-<br/><br/><br/>
-<div class="mb-3">
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn btn-info">Разместить</button>
-    </form>
-</div>
 
 
+{% if user.is_authenticated %}
+    <h1>Добавить пост</h1>
+    <br/><br/><br/>
+
+    <div class="form-group">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-info">Разместить</button>
+        </form>
+    </div>
+
+    <script>
+        var name = "{{ user.id }}";
+        document.getElementById("пользователь").value
+                = name;
+
+
+    </script>
+
+{% else %}
+Нужно авторизоваться
+{% endif %}
 {% endblock %}
