@@ -11,6 +11,7 @@
         {{ post.author.last_name }} -
         {{ post.post_date }}<small>
 
+
         {% if user.is_authenticated %}
             {% if user.id == post.author.id %}
 
@@ -20,7 +21,7 @@
         {% endif %}
 
         </small><br/>
-        {{ post.body|slice:"300"|safe }}</li>
+        {{ post.snippet }}</li>
 {% endfor %}
 </ul>
 
