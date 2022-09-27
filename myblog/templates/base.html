@@ -50,12 +50,24 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'add_category' %}">Добавить категорию</a>
             </li>
+
+            <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Профиль
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'edit_profile' %}">Редактировать настройки</a></li>
+                    <li><a class="dropdown-item" href="{% url 'edit_profile_page' user.profile.id %}">Редактировать страницу профиля</a></li>
+                    <li><a class="dropdown-item" href="{% url 'show_profile_page' user.profile.id %}">Показать страницу профиля</a></li>
+                  </ul>
+             </li>
+
+
+
             <li class="nav-item">
               <a class="nav-link" href="{% url 'logout' %}">Выйти</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'edit_profile' %}">Редактировать профиль</a>
-            </li>
+
 
 
         {% else %}
