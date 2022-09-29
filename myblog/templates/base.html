@@ -51,25 +51,6 @@
               <a class="nav-link" href="{% url 'add_category' %}">Добавить категорию</a>
             </li>
 
-            <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Профиль
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{% url 'edit_profile' %}">Редактировать настройки</a></li>
-                    <li><a class="dropdown-item" href="{% url 'edit_profile_page' user.profile.id %}">Редактировать страницу профиля</a></li>
-                    <li><a class="dropdown-item" href="{% url 'show_profile_page' user.profile.id %}">Показать страницу профиля</a></li>
-                  </ul>
-             </li>
-
-
-
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'logout' %}">Выйти</a>
-            </li>
-
-
-
         {% else %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'register' %}">Зарегистрироваться</a>
@@ -78,16 +59,50 @@
              <li class="nav-item">
               <a class="nav-link" href="{% url 'login' %}">Войти</a>
             </li>
-
         {% endif %}
 
-
-
       </ul>
+{% if user.is_authenticated %}
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+<li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{ user.first_name }} {{ user.last_name }}
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a class="dropdown-item"
+                        href="{% url 'edit_profile' %}">Редактировать
+                        настройки</a></li>
+
+                    {% if user.profile.id %}
+                      <li><a class="dropdown-item"
+                        href="{% url 'edit_profile_page' user.profile.id%}">Редактировать
+                        страницу профиля</a></li>
+                      <li><a class="dropdown-item"
+                             href="{% url 'show_profile_page'
+                        user.profile.id %}">Показать
+                          страницу профиля</a></li>
+
+                      {% else %}
+                      <li><a class="dropdown-item"
+                        href="{% url 'create_profile_page' %}">Создать
+                        страницу профиля</a></li>
+                      {% endif %}
+                      <li><a class="dropdown-item"
+                          href="{% url 'logout' %}">Выйти</a>  </li>
+                  </ul>
+             </li>
+
+
+
+         </ul>
+{% endif %}
+
 
     </div>
   </div>
 </nav>
+
 <!--ebd navbar-->
 
    <div class="container">

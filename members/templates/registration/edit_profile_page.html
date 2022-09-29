@@ -12,25 +12,16 @@
     <div class="form-group">
 <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            {{ form.media }}
             {{ form.as_p }}
             <button class="btn btn-info">Обновить страницу профиля</button>
         </form>
     </div>
 
-    <script>
-        var name = "{{ user.id }}";
-        document.getElementById("пользователь").value
-                = name;
+    {% else %}
+          Вы не корректный пользователь, чтобы редактировать данную страницу...
 
-
-    </script>
-
+    {% endif %}
 {% else %}
-Нужно авторизоваться
-{% endif %}
-{% else %}
-
-Вы не корректный пользователь, чтобы редактировать данную страницу...
+        Нужно авторизоваться
 {% endif %}
 {% endblock %}

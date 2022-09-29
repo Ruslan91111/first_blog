@@ -7,10 +7,22 @@
 <div class="mb-3">
     <form method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn btn-info">Войти</button>
-    </form>
-</div>
 
+<div class="mb-3">
+    <input type="text" class="form-control" name="Username" placeholder="Имя пользователя">
+</div>
+        <br/>
+  <div class="mb-3">
+    <input type="password" class="
+    form-control" name = "Password"
+    placeholder="Пароль">
+  </div>
+
+        <button class="btn btn-info">Войти</button>
+
+</div>
+</form>
+<div id="emailHelp" class="
+    form-text">Не зарегистрированы? <a href="{% url 'register' %}">Тогда зарегистрироваться здесь.</a></div>
 
 {% endblock %}

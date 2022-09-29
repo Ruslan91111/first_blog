@@ -29,6 +29,9 @@ class Profile(models.Model):
     def __str__(self):
         return str(self.user)
 
+    def get_absolute_url(self):
+        return reverse('home')
+
 
 class Post(models.Model):
     title = models.CharField(max_length=255, verbose_name='заголовок')
@@ -36,7 +39,6 @@ class Post(models.Model):
     title_tag = models.CharField(max_length=255, verbose_name='Тэг-лайн')
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='автор')
     body = RichTextField(blank=True, null=True)
-    # body = models.TextField(verbose_name='текст')
     post_date = models.DateField(auto_now_add=True, verbose_name='дата публикации')
     category = models.CharField(max_length=255, verbose_name='Категория', default='coding')
     snippet = models.CharField(max_length=255)
@@ -54,6 +56,15 @@ class Post(models.Model):
         return reverse('home')
         # return reverse('article-detail', args=(str(self.id)))
 
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post, related_name="comments", on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    body = models.TextField()
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return '%s - %s' % (self.post.title, self.name)
 
 
 

@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %} Создать новый пост.{% endblock %}
+{% block title %} Подробности поста.{% endblock %}
 
 
 {% block content %}
@@ -56,7 +56,8 @@ method="POST">
 
 </form>
 
-<br/><br/>
+
+<hr>
 
 <div class="card mb-3">
   <div class="row g-0">
@@ -111,10 +112,32 @@ method="POST">
   </div>
 </div>
 
+<!--секция комментариев-->
+<hr>
+<h3> Комментарии</h3>
+{% if not post.comments.all %}
+        Комментариев нет<a href="{% url 'add_comment' post.pk %}"
+        >Оставить комментарий</a>
 
+{% else %}
+<a href="{% url 'add_comment' post.pk %}">Оставить комментарий</a>
+<br/><br/>
+{% for comment in post.comments.all %}
+        <strong>
+           {{ comment.name }} -
+           {{ comment.date_added }}
+        </strong>
+        <br/>
+        {{ comment.body }}<br/><br/>
+{% endfor %}
+        <br/>
+        <a href="{% url 'add_comment' post.pk %}"
+        >Оставить комментарий</a>
 
+{% endif %}
 
->
+<br/><br/>
+<!--конец секции комментариев-->
 
 {% endblock %}
 
